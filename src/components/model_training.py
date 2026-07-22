@@ -51,7 +51,48 @@ class ModelTrainer:
                  "AdaBoost Regressor":AdaBoostRegressor()
                  
              }
-             model_report:dict=evaluate_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
+             params = {
+                    "Decision Tree": {
+                        "criterion": ["squared_error", "absolute_error", "poisson"],
+                        "max_depth": [5, 10, 20, None],
+                        "min_samples_split": [2, 5, 10]
+                    },
+
+                    "Random Forest": {
+                        "n_estimators": [50, 100, 200],
+                        "max_depth": [5, 10, None]
+                    },
+
+                    "Gradient Boosting": {
+                        "learning_rate": [0.01, 0.05, 0.1],
+                        "n_estimators": [100, 200],
+                        "subsample": [0.8, 1.0,0.75,0.85,0.9],
+                    },
+
+                    "Linear Regression": {},
+
+                    "K-Neighbors Regressor": {
+                        "n_neighbors": [3, 5, 7, 9]
+                    },
+
+                    "XGB Regressor": {
+                        "learning_rate": [0.01, 0.05, 0.1],
+                        "n_estimators": [100, 200],
+                        "max_depth": [3, 5, 7]
+                    },
+
+                    "CatBoosting Regressor": {
+                        "depth": [4, 6, 8],
+                        "learning_rate": [0.01, 0.05, 0.1],
+                        "iterations": [100, 200]
+                    },
+
+                    "AdaBoost Regressor": {
+                        "learning_rate": [0.01, 0.1, 1.0],
+                        "n_estimators": [50, 100, 200]
+                    }
+             }
+             model_report:dict=evaluate_model(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models,param=params)
              logging.info("Model evaluation completed")
 
              best_model_score=max(sorted(model_report.values()))
