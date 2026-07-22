@@ -33,7 +33,7 @@ class DataTransformation:
                 "race_ethnicity",
                 "parental_level_of_education",
                 "lunch",
-                "test_preparation_couse",
+                "test_preparation_course",
             ]
             num_pipeline=Pipeline(
                 steps=[
@@ -64,7 +64,7 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e, sys)
         
-def initiate_data_transformation(self,train_path,test_path):
+    def initiate_data_transformation(self,train_path,test_path):
         try:
              train_df=pd.read_csv(train_path)
              test_df=pd.read_csv(test_path)
@@ -78,10 +78,10 @@ def initiate_data_transformation(self,train_path,test_path):
              target_column_name="math_score"
              numerical_columns=["writing_score","reading_score"]
 
-             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
+             input_feature_train_df=train_df.drop(columns=[target_column_name])
              target_feature_train_df=train_df[target_column_name]
 
-             input_feature_test_df=test_df.drop(columns=[target_column_name],axis=1)
+             input_feature_test_df=test_df.drop(columns=[target_column_name])
              target_feature_test_df=test_df[target_column_name]
 
              logging.info(
