@@ -65,8 +65,8 @@ The best-performing model is selected automatically based on evaluation metrics.
 Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/preeti9311/ML_PROJECT.git
+cd ML_PROJECT
 ```
 
 Install dependencies:
